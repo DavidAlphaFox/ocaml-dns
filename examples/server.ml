@@ -34,6 +34,6 @@ let lookup ~src ~dst packet =
 let () =
     Lwt_main.run (
         let address = "127.0.0.1" in (* listen on localhost *)
-        let port = 53 in
+        let port = 53 in (* :> 是向上转型 *)
         let processor = ((Dns_server.processor_of_process lookup) :> (module Dns_server.PROCESSOR)) in
         Dns_server_unix.serve_with_processor ~address ~port ~processor)
